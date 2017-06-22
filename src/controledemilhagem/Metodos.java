@@ -32,7 +32,8 @@ public class Metodos {
         System.out.println("Digite 1 para cadastrar novo cliente");
         System.out.println("Digite 2 para excluir cliente");
         System.out.println("Digite 3 para exibir todos os clientes");
-        System.out.println("Digite 4 para cadastrar voo por cliente");
+        System.out.println("Digite 4 para cadastrar voo do cliente");
+        System.out.println("Digite 5 para excluir voo do cliente");
 
     }
 
@@ -44,6 +45,10 @@ public class Metodos {
         int cpf;
         int categoria;
         int codCon;
+    }
+
+    public void excluirCliente(){
+        
     }
 
     public static void CadastroVoo(ArrayList<Voos> listavoo) {
