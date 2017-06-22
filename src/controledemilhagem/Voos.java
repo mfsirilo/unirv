@@ -37,6 +37,6 @@ public class Voos {
 
     public void setDistancia(float distancia) {
         this.distancia = distancia;
-    }
+        }
 
 }
