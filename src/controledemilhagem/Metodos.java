@@ -24,6 +24,7 @@ public class Metodos {
         System.out.println("Digite 0 para sair");
         System.out.println("Digite 1 para Clientes");
         System.out.println("Digite 2 para Voos");
+        System.out.println("Digite 3 para Relatórios");
         System.out.println("");
     }
 
@@ -31,9 +32,8 @@ public class Metodos {
         System.out.println("========================================");
         System.out.println("Digite 1 para cadastrar novo cliente");
         System.out.println("Digite 2 para excluir cliente");
-        System.out.println("Digite 3 para exibir todos os clientes");
-        System.out.println("Digite 4 para cadastrar voo do cliente");
-        System.out.println("Digite 5 para excluir voo do cliente");
+        System.out.println("Digite 3 para cadastrar voo do cliente");
+        System.out.println("Digite 4 para excluir voo do cliente");
 
     }
 
@@ -46,8 +46,27 @@ public class Metodos {
         int categoria;
         int codCon;
     }
+    
+    public void excluirCliente(ArrayList<Clientes>listaclientes){
+        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        
+    }
+    
+    public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente){
+        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente,enderecoVocli);
+        
+    }
+    
+    public void excluirVoocliente (ArrayList<Voocliente> listavoocliente){
+        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente,enderecoVocli);
+        
+    }
 
-    public void excluirCliente(){
+    
+    public void menuRelatorio(ArrayList <Clientes> listaclientes , ArrayList<Voocliente>listavoocliente,ArrayList<Voos> listavoos){
+        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente,enderecoVocli);
+        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
         
     }
 
