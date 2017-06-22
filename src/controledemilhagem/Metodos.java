@@ -44,22 +44,34 @@ public class Metodos {
         System.out.println("");
 
     }
-
-    public void cadastroCliente(ArrayList<Clientes> listaclientes) {
+    //Metodo para cadastrar clientes
+    public void cadastroCliente(ArrayList<Clientes> listaclientes, int codCli, String nome, String sexo,
+            String cpf, int categoria, int codCon) {
+        //Carrega os clientes do arquivo pra lista
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-
-        String nome;
-        String sexo;
-        int cpf;
-        int categoria;
-        int codCon;
+        
+	Clientes cliente = new Clientes(codCli , nome, sexo, cpf, categoria, codCon);
+        //Aqui adiciona o objeto cliente na lista de clientes.
+        listaclientes.add(cliente);
+        
     }
 
-    public void excluirCliente(ArrayList<Clientes> listaclientes) {
+    public void excluirCliente(ArrayList<Clientes> listaclientes, int codigo) {
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
+        listaclientes.remove(retornaIndiceCliente(codigo, listaclientes));
+        
 
     }
-
+    //Metodo que procurar o indide do cliente dentro do arraylist atrav�s do c�digo
+    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> listaclientes){
+            int index = 0;
+             for (int i =0; i<listaclientes.size();i++){
+                if(listaclientes.get(i).getCodCli()==codigo)
+              index = i;
+            }
+            return index;
+    }
     public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
         listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
 

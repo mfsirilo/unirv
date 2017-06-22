@@ -7,7 +7,7 @@ public class Clientes {
     private int codCli;
     private String nome;
     private String sexo;
-    private int cpf;
+    private String cpf;
     private int categoria;
     private int codCon;
 
@@ -35,11 +35,11 @@ public class Clientes {
         this.sexo = sexo;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -60,7 +60,7 @@ public class Clientes {
     }
     
     //Construtor de clientes
-    public Clientes(int codCli, String nome, String sexo, int cpf, int categoria, int codCon) {
+    public Clientes(int codCli, String nome, String sexo, String cpf, int categoria, int codCon) {
 	setCodCli(codCli);
 	setNome(nome);
 	setSexo(sexo);
@@ -68,19 +68,7 @@ public class Clientes {
 	setCategoria(categoria);
 	setCodCon(codCon);
     }
-    //Metodo para cadastrar clientes
-    public Clientes cadastrarCliente(int codCli, String nome, String sexo, int cpf, int categoria, int codCon){
-	Clientes cliente = new Clientes(codCli , nome, sexo, cpf, categoria, codCon);
-	return cliente;
-	}
+    
 	
-    //Metodo que procurar o indide do cliente dentro do arraylist atrav�s do c�digo
-    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> listaclientes){
-    	int index = 0;
-        for (int i =0; i<Clientes.size();i++){
-            if(Clientes.get(i).getCodCli()==codigo)
-            index = i;
-	}
-	return index;
-    }
+    
 }
