@@ -46,7 +46,7 @@ public class ControledeMilhagem {
         ArrayList<Voos> listavoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
 
-        Clientes client = new Clientes(); //deu ruim!
+//        Clientes client = new Clientes(); //deu ruim!
         Metodos metodos = new Metodos();
 
         int opcao1, opcao2;
@@ -57,31 +57,66 @@ public class ControledeMilhagem {
         while (opcao1 != 0) {
 
             switch (opcao1) {
-
                 case 1:
+
                     metodos.menuClientes();
                     opcao2 = scan.nextInt();
 
                     while (opcao2 != 0) {
-                        switch (opcao2) {
 
+                        switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
                                 metodos.cadastroCliente(listaclientes);
                                 break;
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirCliente();
+                                metodos.excluirCliente(listaclientes);
                                 break;
                             case 3:
                                 metodos.limparTela();
                                 metodos.cadastroVoocliente(listavoocliente);
+                                break;
                             case 4:
-                                
+                                metodos.limparTela();
+                                metodos.excluirVoocliente(listavoocliente);
+                                break;
 
                         }
+                        metodos.limparTela();
+                        metodos.menuClientes();
+                        opcao2 = scan.nextInt();
+                    }
+                    metodos.limparTela();
+                    metodos.Menuprincipal();
+                    opcao1 = scan.nextInt();
+
+                case 2:
+                    metodos.menuVoo();
+                    opcao2 = scan.nextInt();
+
+                    while (opcao2 != 0) {
+
+                        switch (opcao2) {
+                            case 1:
+                                metodos.limparTela();
+                                metodos.cadastroVoo(listavoos);
+                                break;
+
+                            case 2:
+                                metodos.limparTela();
+                                metodos.excluirVoo(listavoos);
+                                break;
+
+                        }
+                        metodos.limparTela();
+                        metodos.menuVoo();
+                        opcao2 = scan.nextInt();
 
                     }
+                    metodos.limparTela();
+                    metodos.Menuprincipal();
+                    opcao1 = scan.nextInt();
 
             }
 
