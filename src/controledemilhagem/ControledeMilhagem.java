@@ -57,6 +57,7 @@ public class ControledeMilhagem {
         while(opcao1!=0){
             switch(opcao1){
                 case 1:
+                    metodos.
                     
             }
             
