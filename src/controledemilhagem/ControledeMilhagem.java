@@ -46,7 +46,7 @@ public class ControledeMilhagem {
         ArrayList<Voos> listavoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
 
-        Clientes client = new Clientes();
+        Clientes client = new Clientes(); //deu ruim!
         Metodos metodos = new Metodos();
 
         int opcao1, opcao2;

@@ -1,5 +1,7 @@
 package controledemilhagem;
 
+import java.util.ArrayList;
+
 public class Clientes {
 
     private int codCli;
@@ -72,11 +74,11 @@ public class Clientes {
 	return cliente;
 	}
 	
-    //Metodo que procurar o indide do cliente dentro do arraylist através do código
-    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> clientes){
+    //Metodo que procurar o indide do cliente dentro do arraylist atravï¿½s do cï¿½digo
+    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> listaclientes){
     	int index = 0;
-        for (int i =0; i<clientes.size();i++){
-            if(clientes.get(i).getCodCli()==codigo)
+        for (int i =0; i<Clientes.size();i++){
+            if(Clientes.get(i).getCodCli()==codigo)
             index = i;
 	}
 	return index;
