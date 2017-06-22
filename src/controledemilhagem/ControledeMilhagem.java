@@ -67,11 +67,11 @@ public class ControledeMilhagem {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.cadastroCliente(listaclientes);
+                                metodos.cadastroCliente(listaclientes, codigo);
                                 break;
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirCliente(listaclientes);
+                                metodos.excluirCliente(listaclientes, codigo);
                                 break;
                             case 3:
                                 metodos.limparTela();
