@@ -41,20 +41,26 @@ public class ControledeMilhagem {
 
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         
         ArrayList<Voocliente> listavoocliente = new ArrayList();
         ArrayList<Voos> listavoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
         
+        Clientes client = new Clientes();
+        Metodos metodos = new Metodos();
         
+        int opcao1, opcao2;
         
-       
-        
-        
-        
-        
-        
+        metodos.Menuprincipal();
+        opcao1 = scan.nextInt();
+        while(opcao1!=0){
+            switch(opcao1){
+                case 1:
+                    
+            }
+            
+        }
     }
 
 }
