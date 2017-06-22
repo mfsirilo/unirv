@@ -53,15 +53,25 @@ public class ControledeMilhagem {
 
         metodos.Menuprincipal();
         opcao1 = scan.nextInt();
+        
         while (opcao1 != 0) {
+        
             switch (opcao1) {
+                
                 case 1:
                     metodos.menuClientes();
                     opcao2 = scan.nextInt();
+            
                     while (opcao2 != 0) {
                         switch (opcao2) {
+                            
                             case 1:
+                                metodos.limparTela();
                                 metodos.cadastroCliente(listaclientes);
+                                break;
+                            case 2:
+                                metodos.limparTela();
+                                metodos.excluirCliente();
                                 
                         }
 
