@@ -119,9 +119,11 @@ public class Metodos {
         //listaclientes.add(cliente);
     }
 
-    public void excluirCliente(ArrayList<Clientes> listaclientes, int codigo) {
+    public void excluirCliente(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
         //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
+        System.out.println("Informe o codigo do cliente");
+        int codigo = scan.nextInt();
         listaclientes.remove(retornaIndiceCliente(codigo, listaclientes));
 
     }
@@ -157,14 +159,36 @@ public class Metodos {
 
     }
 
-    public void cadastroVoo(ArrayList<Voos> listavoo) {
-
+    public void cadastroVoo(ArrayList<Voos> listaVoos) {
+        /*O codigo de voos não é incremental, o codigo de voo é definido de acordo com a compania
+        *Escala cidades e etc. Então o usuário q vai digitar.
+        */
+        System.out.println("Informe o codigo do voo:");
+        codV = scan.nextInt(); scan.nextLine();
+        System.out.println("Informe a origem:");
+        String origem = scan.nextLine();
+        System.out.println("Qual o destino?");
+        String destino = scan.nextLine();
+        System.out.println("Eu nao sei calcular a distancia, informa aê mano:");
+        float dist = scan.nextFloat(); scan.nextLine();
+        Voos voo = new Voos(codV, origem, destino, dist);
+        listaVoos.add(voo);
     }
 
     public void excluirVoo(ArrayList<Voos> listavoo) {
-
+        System.out.println("Informe o código do voo: ");
+        int codigo = scan.nextInt();
+        listavoo.remove(retornaIndiceVoos(codigo, listavoo));
     }
-
+    public static int retornaIndiceVoos(int codigo, ArrayList<Voos> listaVoos) {
+        int index = 0;
+        for (int i = 0; i < listaVoos.size(); i++) {
+            if (listaVoos.get(i).getCodigoVoo()== codigo) {
+                index = i;
+            }
+        }
+        return index;
+    }
     public void menuRelatorio() {
 
         System.out.println("Digite 1 para exibição de histórico de voo por cliente");

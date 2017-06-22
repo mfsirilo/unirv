@@ -42,8 +42,8 @@ public class ControledeMilhagem {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        ArrayList<Voocliente> listavoocliente = new ArrayList();
-        ArrayList<Voos> listavoos = new ArrayList();
+        ArrayList<Voocliente> listaVooClientes = new ArrayList();
+        ArrayList<Voos> listaVoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
 
 //        Clientes client = new Clientes(); //deu ruim!
@@ -71,15 +71,15 @@ public class ControledeMilhagem {
                                 break;
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirCliente(listaclientes,);
+                                metodos.excluirCliente(listaclientes);
                                 break;
                             case 3:
                                 metodos.limparTela();
-                                metodos.cadastroVoocliente(listavoocliente);
+                                metodos.cadastroVoocliente(listaVooClientes);
                                 break;
                             case 4:
                                 metodos.limparTela();
-                                metodos.excluirVoocliente(listavoocliente);
+                                metodos.excluirVoocliente(listaVooClientes);
                                 break;
 
                         }
@@ -100,12 +100,12 @@ public class ControledeMilhagem {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.cadastroVoo(listavoos);
+                                metodos.cadastroVoo(listaVoos);
                                 break;
 
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirVoo(listavoos);
+                                metodos.excluirVoo(listaVoos);
                                 break;
 
                         }
@@ -126,17 +126,17 @@ public class ControledeMilhagem {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.historicoVooCliente(listaclientes, listavoocliente, listavoos);
+                                metodos.historicoVooCliente(listaclientes, listaVooClientes, listaVoos);
                                 break;
 
                             case 2:
                                 metodos.limparTela();
-                                metodos.saldoMilhasIndividual(listaclientes, listavoocliente, listavoos);
+                                metodos.saldoMilhasIndividual(listaclientes, listaVooClientes, listaVoos);
                                 break;
 
                             case 3:
                                 metodos.limparTela();
-                                metodos.saldoMilhasFamiliar(listaclientes, listavoocliente, listavoos);
+                                metodos.saldoMilhasFamiliar(listaclientes, listaVooClientes, listaVoos);
                                 break;
                         }
                         metodos.menuRelatorio();
