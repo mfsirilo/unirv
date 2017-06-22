@@ -43,6 +43,12 @@ public class ControledeMilhagem {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
+        ArrayList<Voocliente> listavoocliente = new ArrayList();
+        ArrayList<Voos> listavoos = new ArrayList();
+        ArrayList<Clientes> listaclientes = new ArrayList();
+        
+        
+        
        
         
         
