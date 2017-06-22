@@ -9,7 +9,7 @@ public class Clientes {
     private String sexo;
     private String cpf;
     private int categoria;
-    private int codCon;
+    private int codConjuge;
 
     public int getCodCli() {
         return codCli;
@@ -51,22 +51,22 @@ public class Clientes {
         this.categoria = categoria;
     }
 
-    public int getCodCon() {
-        return codCon;
+    public int getCodConjuge() {
+        return codConjuge;
     }
 
-    public void setCodCon(int codCon) {
-        this.codCon = codCon;
+    public void setCodConjuge(int codConjuge) {
+        this.codConjuge = codConjuge;
     }
     
     //Construtor de clientes
-    public Clientes(int codCli, String nome, String sexo, String cpf, int categoria, int codCon) {
+    public Clientes(int codCli, String nome, String sexo, String cpf, int categoria, int codConjuge) {
 	setCodCli(codCli);
 	setNome(nome);
 	setSexo(sexo);
 	setCpf(cpf);
 	setCategoria(categoria);
-	setCodCon(codCon);
+	setCodConjuge(codConjuge);
     }
     
 	

@@ -67,11 +67,11 @@ public class ControledeMilhagem {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.cadastroCliente(listaclientes, codigo);
+                                metodos.cadastroCliente(listaclientes);
                                 break;
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirCliente(listaclientes, codigo);
+                                metodos.excluirCliente(listaclientes,);
                                 break;
                             case 3:
                                 metodos.limparTela();
@@ -113,6 +113,34 @@ public class ControledeMilhagem {
                         metodos.menuVoo();
                         opcao2 = scan.nextInt();
 
+                    }
+                    metodos.limparTela();
+                    metodos.Menuprincipal();
+                    opcao1 = scan.nextInt();
+
+                case 3:
+                    metodos.menuRelatorio();
+                    opcao2 = scan.nextInt();
+
+                    while (opcao2 != 0) {
+                        switch (opcao2) {
+                            case 1:
+                                metodos.limparTela();
+                                metodos.historicoVooCliente(listaclientes, listavoocliente, listavoos);
+                                break;
+
+                            case 2:
+                                metodos.limparTela();
+                                metodos.saldoMilhasIndividual(listaclientes, listavoocliente, listavoos);
+                                break;
+
+                            case 3:
+                                metodos.limparTela();
+                                metodos.saldoMilhasFamiliar(listaclientes, listavoocliente, listavoos);
+                                break;
+                        }
+                        metodos.menuRelatorio();
+                        opcao2 = scan.nextInt();
                     }
                     metodos.limparTela();
                     metodos.Menuprincipal();

@@ -14,7 +14,7 @@ public class Metodos {
     String enderecoVoo = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
      */
     Scanner scan = new Scanner(System.in);
-    int codC = 0, codCV = 0, codV = 0;
+    int codC = 0, codCV = 0, codV = 0, CodConjuge = 0;
 
     public static void limparTela() {
         for (int i = 0; i != 20; ++i) {
@@ -44,34 +44,99 @@ public class Metodos {
         System.out.println("");
 
     }
+
     //Metodo para cadastrar clientes
-    public void cadastroCliente(ArrayList<Clientes> listaclientes, int codCli, String nome, String sexo,
-            String cpf, int categoria, int codCon) {
+    public void cadastroCliente(ArrayList<Clientes> listaclientes) {
         //Carrega os clientes do arquivo pra lista
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-        
-	Clientes cliente = new Clientes(codCli , nome, sexo, cpf, categoria, codCon);
+
+        String nome;
+        String sexo;
+        String cpf;
+        int categoria;
+        String escolha;
+
+        System.out.println("Informe o nome do cliente");
+        nome = scan.next();
+        System.out.println("Informe o sexo");
+        sexo = scan.next();
+        System.out.println("Informe o CPF");
+        cpf = scan.next();
+        System.out.println("Informe a categoria - ");
+        categoria = scan.nextInt();
+        System.out.println("Cliente possui conjuge?");
+        escolha = scan.next();
+        Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
+
+        if ((escolha).equals("s")) {
+            if (listaclientes.size() > 0) {
+                int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
+                cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
+                listaclientes.add(cliente);
+                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                cliente = listaclientes.get(codC);
+                codC++;
+
+                int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
+
+                cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
+                listaclientes.add(cliente);
+                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                cliente = listaclientes.get(CodConjuge);
+                CodConjuge++;
+
+                ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
+            } else {
+                listaclientes.add(cliente);
+                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                cliente = listaclientes.get(codC);
+                codC++;
+
+                listaclientes.add(cliente);
+                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                cliente = listaclientes.get(CodConjuge);
+                CodConjuge++;
+            }
+        } else if (listaclientes.size() > 0) {
+            int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
+            cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
+            listaclientes.add(cliente);
+            ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+            cliente = listaclientes.get(codC);
+            codC++;
+            ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
+            
+        } else {
+            listaclientes.add(cliente);
+            ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+            cliente = listaclientes.get(codC);
+            codC++;
+        }
+        ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
+        System.out.println("");
+
         //Aqui adiciona o objeto cliente na lista de clientes.
-        listaclientes.add(cliente);
-        
+        //listaclientes.add(cliente);
     }
 
     public void excluirCliente(ArrayList<Clientes> listaclientes, int codigo) {
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
         //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
         listaclientes.remove(retornaIndiceCliente(codigo, listaclientes));
-        
 
     }
+
     //Metodo que procurar o indide do cliente dentro do arraylist atrav�s do c�digo
-    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> listaclientes){
-            int index = 0;
-             for (int i =0; i<listaclientes.size();i++){
-                if(listaclientes.get(i).getCodCli()==codigo)
-              index = i;
+    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> listaclientes) {
+        int index = 0;
+        for (int i = 0; i < listaclientes.size(); i++) {
+            if (listaclientes.get(i).getCodCli() == codigo) {
+                index = i;
             }
-            return index;
+        }
+        return index;
     }
+
     public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
         listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
 
@@ -117,7 +182,17 @@ public class Metodos {
 
     }
 
-    public void saldoMilhaindividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
+    public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
+        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
+        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
+
+    }
+
+    public void saldoMilhasFamiliar(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
+        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
+        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
 
     }
 
