@@ -56,5 +56,29 @@ public class Clientes {
     public void setCodCon(int codCon) {
         this.codCon = codCon;
     }
-
+    
+    //Construtor de clientes
+    public Clientes(int codCli, String nome, String sexo, int cpf, int categoria, int codCon) {
+	setCodCli(codCli);
+	setNome(nome);
+	setSexo(sexo);
+	setCpf(cpf);
+	setCategoria(categoria);
+	setCodCon(codCon);
+    }
+    //Metodo para cadastrar clientes
+    public Clientes cadastrarCliente(int codCli, String nome, String sexo, int cpf, int categoria, int codCon){
+	Clientes cliente = new Clientes(codCli , nome, sexo, cpf, categoria, codCon);
+	return cliente;
+	}
+	
+    //Metodo que procurar o indide do cliente dentro do arraylist através do código
+    public static int retornaIndiceCliente(int codigo, ArrayList<Clientes> clientes){
+    	int index = 0;
+        for (int i =0; i<clientes.size();i++){
+            if(clientes.get(i).getCodCli()==codigo)
+            index = i;
+	}
+	return index;
+    }
 }

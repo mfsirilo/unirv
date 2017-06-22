@@ -9,6 +9,12 @@ public class Metodos {
     String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
     String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
 
+    /*String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
+    String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
+    String enderecoVoo = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
+    */
+
+
     Scanner scan = new Scanner(System.in);
     int codC = 0, codCV = 0, codV = 0;
 
