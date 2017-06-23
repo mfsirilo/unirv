@@ -9,9 +9,9 @@ public class Metodos {
     String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
     String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
 
-    /*String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
-    String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
-    String enderecoVoo = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes.bin";
+    /*String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
+    String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
+    String enderecoVoo = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Voo.bin";
      */
     Scanner scan = new Scanner(System.in);
     int codC = 0, codCV = 0, codV = 0, CodConjuge = 0;
@@ -153,6 +153,37 @@ public class Metodos {
             }
         }
         return index;
+    }
+    public void imprimeCliente(ArrayList<Clientes> listaclientes, int codigo){
+        String NomeConjuge;
+        int indiceconjuge;
+        int codC;
+        if (codigo==0){
+            for(Clientes cli: listaclientes){
+                System.out.println("Codigo: " + cli.getCodCli());
+                System.out.println("Nome: " + cli.getNome());
+                System.out.println("Sexo: " + cli.getSexo());
+                System.out.println("CPF: " + cli.getCpf());
+                System.out.println("Categoria: " + cli.getCategoria());
+                System.out.println("Codigo do Conjuge: " + cli.getCodConjuge());
+                indiceconjuge = retornaIndiceCliente(cli.getCodConjuge(), listaclientes);
+                NomeConjuge = listaclientes.get(retornaIndiceCliente(cli.getCodConjuge(),
+                        listaclientes)).getNome();
+                System.out.println("Nome Conjuge: " + NomeConjuge);
+            }
+        }else{
+            int indice = retornaIndiceCliente(codigo, listaclientes);
+            System.out.println("Codigo: " + listaclientes.get(indice).getCodCli());
+            System.out.println("Nome: " + listaclientes.get(indice).getNome());
+            System.out.println("Sexo: " + listaclientes.get(indice).getSexo());
+            System.out.println("CPF: " + listaclientes.get(indice).getCpf());
+            System.out.println("Categoria: " + listaclientes.get(indice).getCategoria());
+            codC = listaclientes.get(indice).getCodConjuge();
+            System.out.println("Codigo do Conjuge: " + codC);
+            indiceconjuge = retornaIndiceCliente(codC, listaclientes);
+            NomeConjuge = listaclientes.get(indiceconjuge).getNome();
+                System.out.println("Nome Conjuge: " + NomeConjuge);                                      
+        }
     }
 
     public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {

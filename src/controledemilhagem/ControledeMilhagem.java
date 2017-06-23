@@ -45,7 +45,7 @@ public class ControledeMilhagem {
         
         Metodos metodos = new Metodos();
 
-        int opcao1, opcao2;
+        int opcao1, opcao2, opcao3;
 
         metodos.Menuprincipal();
         opcao1 = scan.nextInt();
@@ -64,6 +64,12 @@ public class ControledeMilhagem {
                             case 1:
                                 metodos.limparTela();
                                 metodos.cadastroCliente(listaclientes);
+                                System.out.println("Cliente Cadastrado:");
+                                //o metodo abaixo deverá imprimir o último cliente cadastrado.
+                                metodos.imprimeCliente(listaclientes, (listaclientes.size()-1));
+                                System.out.println("O Cliente possui conjuge?");
+                                
+                                        
                                 break;
                             case 2:
                                 metodos.limparTela();
