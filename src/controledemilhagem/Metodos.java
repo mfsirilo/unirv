@@ -55,6 +55,7 @@ public class Metodos {
         String cpf;
         int categoria;
         String escolha;
+        String escolha2;
 
         System.out.println("Informe o nome do cliente");
         nome = scan.next();
@@ -66,36 +67,44 @@ public class Metodos {
         categoria = scan.nextInt();
         System.out.println("Cliente possui conjuge?");
         escolha = scan.next();
+
         Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
 
         if ((escolha).equals("s")) {
-            if (listaclientes.size() > 0) {
-                int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
-                cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
-                listaclientes.add(cliente);
-                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                cliente = listaclientes.get(codC);
-                codC++;
+            //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
+            System.out.println("Verifique se o conjuge possui código cadastrado?");
+            escolha2 = scan.next();
+            if ((escolha2).equals("n")) {
+                //chamar função de cadastro novamente, para cadastrar o conjuge 
 
-                int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
+                if (listaclientes.size() > 0) {
+                    int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
+                    cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
+                    listaclientes.add(cliente);
+                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                    cliente = listaclientes.get(codC);
+                    codC++;
 
-                cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
-                listaclientes.add(cliente);
-                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                cliente = listaclientes.get(CodConjuge);
-                CodConjuge++;
+                    int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
 
-                ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
-            } else {
-                listaclientes.add(cliente);
-                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                cliente = listaclientes.get(codC);
-                codC++;
+                    cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
+                    listaclientes.add(cliente);
+                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                    cliente = listaclientes.get(CodConjuge);
+                    CodConjuge++;
 
-                listaclientes.add(cliente);
-                ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                cliente = listaclientes.get(CodConjuge);
-                CodConjuge++;
+                    ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
+                } else {
+                    listaclientes.add(cliente);
+                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                    cliente = listaclientes.get(codC);
+                    codC++;
+
+                    listaclientes.add(cliente);
+                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+                    cliente = listaclientes.get(CodConjuge);
+                    CodConjuge++;
+                }
             }
         } else if (listaclientes.size() > 0) {
             int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
@@ -105,7 +114,7 @@ public class Metodos {
             cliente = listaclientes.get(codC);
             codC++;
             ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
-            
+
         } else {
             listaclientes.add(cliente);
             ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
@@ -162,15 +171,17 @@ public class Metodos {
     public void cadastroVoo(ArrayList<Voos> listaVoos) {
         /*O codigo de voos não é incremental, o codigo de voo é definido de acordo com a compania
         *Escala cidades e etc. Então o usuário q vai digitar.
-        */
+         */
         System.out.println("Informe o codigo do voo:");
-        codV = scan.nextInt(); scan.nextLine();
+        codV = scan.nextInt();
+        scan.nextLine();
         System.out.println("Informe a origem:");
         String origem = scan.nextLine();
         System.out.println("Qual o destino?");
         String destino = scan.nextLine();
         System.out.println("Eu nao sei calcular a distancia, informa aê mano:");
-        float dist = scan.nextFloat(); scan.nextLine();
+        float dist = scan.nextFloat();
+        scan.nextLine();
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
     }
@@ -180,15 +191,17 @@ public class Metodos {
         int codigo = scan.nextInt();
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
     }
+
     public static int retornaIndiceVoos(int codigo, ArrayList<Voos> listaVoos) {
         int index = 0;
         for (int i = 0; i < listaVoos.size(); i++) {
-            if (listaVoos.get(i).getCodigoVoo()== codigo) {
+            if (listaVoos.get(i).getCodigoVoo() == codigo) {
                 index = i;
             }
         }
         return index;
     }
+
     public void menuRelatorio() {
 
         System.out.println("Digite 1 para exibição de histórico de voo por cliente");
