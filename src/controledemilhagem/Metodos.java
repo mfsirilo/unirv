@@ -206,27 +206,15 @@ public class Metodos {
 
     }
 
-    public void cadastroVoo(ArrayList<Voos> listaVoos) {
+    public void cadastroVoo(ArrayList<Voos> listaVoos, int codV, String origem, String destino, float dist) {
         /*O codigo de voos não é incremental, o codigo de voo é definido de acordo com a compania
         *Escala cidades e etc. Então o usuário q vai digitar.
          */
-        System.out.println("Informe o codigo do voo:");
-        codV = scan.nextInt();
-        scan.nextLine();
-        System.out.println("Informe a origem:");
-        String origem = scan.nextLine();
-        System.out.println("Qual o destino?");
-        String destino = scan.nextLine();
-        System.out.println("Eu nao sei calcular a distancia, informa aê mano:");
-        float dist = scan.nextFloat();
-        scan.nextLine();
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
     }
 
-    public void excluirVoo(ArrayList<Voos> listavoo) {
-        System.out.println("Informe o código do voo: ");
-        int codigo = scan.nextInt();
+    public void excluirVoo(ArrayList<Voos> listavoo, int codigo) {
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
     }
 

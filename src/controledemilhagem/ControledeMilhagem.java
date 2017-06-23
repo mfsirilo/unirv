@@ -103,12 +103,22 @@ public class ControledeMilhagem {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.cadastroVoo(listaVoos);
+                                System.out.println("Informe o codigo do voo:");
+                                int codV = scan.nextInt(); scan.nextLine();
+                                System.out.println("Informe a origem:");
+                                String origem = scan.nextLine();
+                                System.out.println("Qual o destino?");
+                                String destino = scan.nextLine();
+                                System.out.println("Eu nao sei calcular a distancia, informa aê mano:");
+                                float dist = scan.nextFloat(); scan.nextLine();
+                                metodos.cadastroVoo(listaVoos, codV, origem, destino, dist);
                                 break;
 
                             case 2:
                                 metodos.limparTela();
-                                metodos.excluirVoo(listaVoos);
+                                System.out.println("Informe o código do voo: ");
+                                int codigoVoo = scan.nextInt();
+                                metodos.excluirVoo(listaVoos, codigoVoo);
                                 break;
 
                         }

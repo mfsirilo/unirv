@@ -40,7 +40,12 @@ public class Voocliente {
     public void setHora(int hora) {
         this.hora = hora;
     }
-    
 
+    public Voocliente(int codVooCli, int codVoo, int data, int hora) {
+        setCodVooCli(codVooCli);
+        setCodVoo(codVoo);
+        setData(data);
+        setHora(hora);
+    }
 
 }
