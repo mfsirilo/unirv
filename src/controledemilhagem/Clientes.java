@@ -60,14 +60,17 @@ public class Clientes {
     }
     
     //Construtor de clientes
+
     public Clientes(int codCli, String nome, String sexo, String cpf, int categoria, int codConjuge) {
-	setCodCli(codCli);
-	setNome(nome);
-	setSexo(sexo);
-	setCpf(cpf);
-	setCategoria(categoria);
-	setCodConjuge(codConjuge);
+        this.codCli = codCli;
+        this.nome = nome;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.categoria = categoria;
+        this.codConjuge = codConjuge;
     }
+
+    
     
 	
     
