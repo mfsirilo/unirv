@@ -1,10 +1,6 @@
 package controledemilhagem;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 import java.text.*;
 
@@ -90,6 +86,7 @@ public class ControledeMilhagem {
                     metodos.limparTela();
                     metodos.Menuprincipal();
                     opcao1 = scan.nextInt();
+                    break;
 
                 case 2:
                     metodos.menuVoo();
@@ -117,6 +114,7 @@ public class ControledeMilhagem {
                     metodos.limparTela();
                     metodos.Menuprincipal();
                     opcao1 = scan.nextInt();
+                    break;
 
                 case 3:
                     metodos.menuRelatorio();
@@ -145,6 +143,7 @@ public class ControledeMilhagem {
                     metodos.limparTela();
                     metodos.Menuprincipal();
                     opcao1 = scan.nextInt();
+                    break;
 
             }
 

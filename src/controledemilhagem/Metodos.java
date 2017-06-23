@@ -47,7 +47,9 @@ public class Metodos {
 
     //Metodo para cadastrar clientes
     public void cadastroCliente(ArrayList<Clientes> listaclientes) {
+    Metodos cadastrocliente = new Metodos();
         //Carrega os clientes do arquivo pra lista
+        
         listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
 
         String nome;
@@ -65,18 +67,23 @@ public class Metodos {
         cpf = scan.next();
         System.out.println("Informe a categoria - ");
         categoria = scan.nextInt();
-        System.out.println("Cliente possui conjuge?");
+        System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
         escolha = scan.next();
 
         Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
 
         if ((escolha).equals("s")) {
             //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
+            
+            for(Clientes listacliente :listaclientes){
+                System.out.println("Os codigos são: "+ listacliente.getCodConjuge());
+            }
             System.out.println("Verifique se o conjuge possui código cadastrado?");
             escolha2 = scan.next();
             if ((escolha2).equals("n")) {
                 //chamar função de cadastro novamente, para cadastrar o conjuge 
-
+                cadastrocliente.cadastroCliente(listaclientes);
+                
                 if (listaclientes.size() > 0) {
                     int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
                     cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
