@@ -39,6 +39,7 @@ public class Metodos implements Serializable {
         System.out.println("Digite 2 para excluir cliente");
         System.out.println("Digite 3 para cadastrar voo do cliente");
         System.out.println("Digite 4 para excluir voo do cliente");
+        System.out.println("Digite 5 para imprimir TODOS os clientes");
         System.out.println("");
         System.out.println("Digite 0 para voltar ao Menu Principal");
         System.out.println("");
@@ -190,8 +191,8 @@ public class Metodos implements Serializable {
     public void menuVoo() {
         System.out.println("========================================");
         System.out.println("Digite 1 para cadastro de Voo: ");
-        System.out.println("Digite 2 para excluir de Voo: ");
-        System.out.println("Digite 3 para imprimir todos Voos cadastrados: ");
+        System.out.println("Digite 2 para imprimir todos Voos cadastrados: ");
+        System.out.println("Digite 3 para excluir de Voo: ");
         System.out.println("");
         System.out.println("Digite 0 para voltar ao Menu Principal");
         System.out.println("");

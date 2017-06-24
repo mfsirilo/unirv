@@ -5,9 +5,7 @@ import java.util.*;
 import java.text.*;
 
 public class ControledeMilhagem implements Serializable {
-
     public static ArrayList gravamentoArquivo(ArrayList arraylist, String enderecoArquivo) {
-
         try {
             FileOutputStream saida = new FileOutputStream(enderecoArquivo);
             ObjectOutputStream escritorObjetos = new ObjectOutputStream(saida);
@@ -20,9 +18,7 @@ public class ControledeMilhagem implements Serializable {
             return arraylist;
         }
     }
-
     public static ArrayList leituramentoArquivo(ArrayList arraylist, String enderecoArquivo) {
-
         try {
             InputStream entrada = new FileInputStream(enderecoArquivo);
             ObjectInputStream leitorObjetos = new ObjectInputStream(entrada);
@@ -34,7 +30,6 @@ public class ControledeMilhagem implements Serializable {
             return arraylist;
         }
     }
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
@@ -44,16 +39,17 @@ public class ControledeMilhagem implements Serializable {
 
         listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
-        
+
         listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoolinux);
         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoClilinux);
-        
+
         Metodos metodos = new Metodos();
 
         int opcao1, opcao2, opcao3;
 
         metodos.Menuprincipal();
         opcao1 = scan.nextInt();
+        scan.nextLine();
 
         while (opcao1 != 0) {
 
@@ -62,13 +58,16 @@ public class ControledeMilhagem implements Serializable {
 
                     metodos.menuClientes();
                     opcao2 = scan.nextInt();
+                    scan.nextLine();
 
                     while (opcao2 != 0) {
 
                         switch (opcao2) {
+                            
                             case 1:
+                            
                                 metodos.limparTela();
-                                
+
                                 String nome;
                                 String sexo;
                                 String cpf;
@@ -83,47 +82,56 @@ public class ControledeMilhagem implements Serializable {
                                 System.out.println("Informe o CPF");
                                 cpf = scan.nextLine();
                                 System.out.println("Informe a categoria - ");
-                                categoria = scan.nextInt(); scan.nextLine();
-                                
+                                categoria = scan.nextInt();
+                                scan.nextLine();
+                                System.out.println(" ====================== ");
+                                System.out.println("");
+
                                 int codigoConjuge = -1;
                                 metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
-                                
-                                System.out.println("Cliente Cadastrado:");
-                                //o metodo abaixo deverá imprimir o último cliente cadastrado.
+
                                 metodos.imprimeCliente(listaclientes, (listaclientes.size() - 1));
-                                
+                                System.out.println(" ====================== ");
+                                System.out.println("Cliente Cadastrado:");
+                                System.out.println("");
+
+                                //o metodo abaixo deverá imprimir o último cliente cadastrado.
+                                System.out.println("");
+
                                 System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
                                 escolha = scan.nextLine();
-                                if((escolha).equals("s")){
+                                System.out.println("");
+                                
+                                if ((escolha).equals("s")) {
                                     System.out.println("Conjuge já é cliente?");
                                     escolha2 = scan.nextLine();
-                                        if ((escolha2).equals("s")){
-                                            metodos.imprimeCliente(listaclientes, 0);
-                                            System.out.println("Informe o codigo do conjuge");
-                                            int codigoAux = scan.nextInt(); scan.nextLine();
-                                            int codigoConjugeCadastrado = listaclientes.get(metodos.retornaIndiceCliente(codigoAux, listaclientes)).getCodCli();
-                                            listaclientes.get(listaclientes.size()-1).setCodConjuge(codigoConjugeCadastrado);
-                                            codigoAux = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                            listaclientes.get(metodos.retornaIndiceCliente(codigoConjugeCadastrado, listaclientes)).setCodConjuge(codigoAux);
-                                        }else if((escolha2).equals("n")){
-                                            System.out.println("Informe o nome do cliente");
-                                            nome = scan.nextLine();
-                                            System.out.println("Informe o sexo");
-                                            sexo = scan.nextLine();
-                                            System.out.println("Informe o CPF");
-                                            cpf = scan.nextLine();
-                                            System.out.println("Informe a categoria - ");
-                                            categoria = scan.nextInt(); scan.nextLine();
-                                            codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                            metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
-                                            codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                            listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
-                                
-                                        }
+                                    System.out.println("");
+                                    if ((escolha2).equals("s")) {
+                                        metodos.imprimeCliente(listaclientes, 0);
+                                        System.out.println("Informe o codigo do conjuge");
+                                        int codigoAux = scan.nextInt();
+                                        scan.nextLine();
+                                        int codigoConjugeCadastrado = listaclientes.get(metodos.retornaIndiceCliente(codigoAux, listaclientes)).getCodCli();
+                                        listaclientes.get(listaclientes.size() - 1).setCodConjuge(codigoConjugeCadastrado);
+                                        codigoAux = listaclientes.get(listaclientes.size() - 1).getCodCli();
+                                        listaclientes.get(metodos.retornaIndiceCliente(codigoConjugeCadastrado, listaclientes)).setCodConjuge(codigoAux);
+                                    } else if ((escolha2).equals("n")) {
+                                        System.out.println("");
+                                        System.out.println("Informe o nome do cliente");
+                                        nome = scan.nextLine();
+                                        System.out.println("Informe o sexo");
+                                        sexo = scan.nextLine();
+                                        System.out.println("Informe o CPF");
+                                        cpf = scan.nextLine();
+                                        System.out.println("Informe a categoria - ");
+                                        categoria = scan.nextInt();
+                                        scan.nextLine();
+                                        codigoConjuge = listaclientes.get(listaclientes.size() - 1).getCodCli();
+                                        metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
+                                        codigoConjuge = listaclientes.get(listaclientes.size() - 2).getCodCli();
+                                        listaclientes.get(listaclientes.size() - 1).setCodConjuge(codigoConjuge);
+                                    }
                                 }
-                                
-                                
-
                                 break;
                             case 2:
                                 metodos.limparTela();
@@ -137,9 +145,11 @@ public class ControledeMilhagem implements Serializable {
                                 metodos.limparTela();
                                 metodos.excluirVoocliente(listaVooClientes);
                                 break;
-
+                            case 5:
+                                metodos.limparTela();
+                                metodos.imprimeCliente(listaclientes, 0);
+                                break;
                         }
-                        metodos.limparTela();
                         metodos.menuClientes();
                         opcao2 = scan.nextInt();
                     }
@@ -149,9 +159,9 @@ public class ControledeMilhagem implements Serializable {
                     break;
 
                 case 2:
+                    
                     metodos.menuVoo();
                     opcao2 = scan.nextInt();
-
                     while (opcao2 != 0) {
 
                         switch (opcao2) {
@@ -169,20 +179,21 @@ public class ControledeMilhagem implements Serializable {
                                 scan.nextLine();
                                 metodos.cadastroVoo(listaVoos, codV, origem, destino, dist);
                                 break;
-
+                            
                             case 2:
-                                metodos.limparTela();
-                                System.out.println("Informe o código do voo: ");
-                                int codigoVoo = scan.nextInt();
-                                metodos.excluirVoo(listaVoos, codigoVoo);
-                                break;
-                                
-                            case 3:
                                 metodos.limparTela();
                                 System.out.println(" ======================================== ");
                                 System.out.println("");
                                 metodos.imprimeVoo(listaVoos);
                                 break;
+
+                            case 3:
+                                metodos.limparTela();
+                                System.out.println("Informe o código do voo: ");
+                                int codigoVoo = scan.nextInt();
+                                metodos.excluirVoo(listaVoos, codigoVoo);
+                                break;
+
                         }
                         metodos.menuVoo();
                         opcao2 = scan.nextInt();
@@ -194,9 +205,9 @@ public class ControledeMilhagem implements Serializable {
                     break;
 
                 case 3:
+                    
                     metodos.menuRelatorio();
                     opcao2 = scan.nextInt();
-
                     while (opcao2 != 0) {
                         switch (opcao2) {
                             case 1:
@@ -221,7 +232,6 @@ public class ControledeMilhagem implements Serializable {
                     metodos.Menuprincipal();
                     opcao1 = scan.nextInt();
                     break;
-
             }
 
         }
