@@ -99,7 +99,8 @@ public class ControledeMilhagem implements Serializable {
                                             int codigoAux = scan.nextInt(); scan.nextLine();
                                             int x = listaclientes.get(metodos.retornaIndiceCliente(codigoAux, listaclientes)).getCodCli();
                                             listaclientes.get(listaclientes.size()-1).setCodConjuge(x);
-                                            metodos.retornaIndiceCliente(x, listaclientes);
+                                            int y = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                            listaclientes.get(x)
                                             
                                         }
                                 }

@@ -3,18 +3,17 @@ package controledemilhagem;
 import java.io.*;
 import java.util.*;
 
-public class Metodos implements Serializable{
+public class Metodos implements Serializable {
 
 //    String enderecoCli = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
 //    String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
 //    String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
-
     static String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
     static String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
     static String enderecoVoo = "D:\\Facul\\ControleMilhagemClientes\\Voo.bin";
-    
+
     Scanner scan = new Scanner(System.in);
-    int codC = 0, codCV = 0, codV = 0, CodConjuge = -1;
+    int codC = 0, codCV = 0, codV = 0;
 
     public static void limparTela() {
         for (int i = 0; i != 20; ++i) {
@@ -46,97 +45,92 @@ public class Metodos implements Serializable{
     }
 
     //Metodo para cadastrar clientes
-    public void cadastroCliente(ArrayList<Clientes> listaclientes) {
-    Metodos cadastrocliente = new Metodos();
+    public void cadastroCliente(ArrayList<Clientes> listaclientes, String nome, String sexo,
+            String cpf, int categoria, int CodConjuge) {
+        Metodos cadastrocliente = new Metodos();
         //Carrega os clientes do arquivo pra lista
-        
-        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-
-        String nome;
-        String sexo;
-        String cpf;
-        int categoria;
-        String escolha;
-        String escolha2;
-
-        System.out.println("Informe o nome do cliente");
-        nome = scan.next();
-        System.out.println("Informe o sexo");
-        sexo = scan.next();
-        System.out.println("Informe o CPF");
-        cpf = scan.next();
-        System.out.println("Informe a categoria - ");
-        categoria = scan.nextInt();
-        System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
-        escolha = scan.next();
-
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
         Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
-
-        if ((escolha).equals("s")) {
-            //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
-            
-            for(Clientes listacliente :listaclientes){
-                System.out.println("Os codigos são: "+ listacliente.getCodConjuge());
-            }
-            System.out.println("Verifique se o conjuge possui código cadastrado?");
-            escolha2 = scan.next();
-            if ((escolha2).equals("n")) {
-                //chamar função de cadastro novamente, para cadastrar o conjuge 
-                cadastrocliente.cadastroCliente(listaclientes);
-                
-                if (listaclientes.size() > 0) {
-                    int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
-                    cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
-                    listaclientes.add(cliente);
-                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                    cliente = listaclientes.get(codC);
-                    codC++;
-
-                    int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
-
-                    cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
-                    listaclientes.add(cliente);
-                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                    cliente = listaclientes.get(CodConjuge);
-                    CodConjuge++;
-
-                    ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
-                } else {
-                    listaclientes.add(cliente);
-                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                    cliente = listaclientes.get(codC);
-                    codC++;
-
-                    listaclientes.add(cliente);
-                    ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-                    cliente = listaclientes.get(CodConjuge);
-                    CodConjuge++;
-                }
-            }
-        } else if (listaclientes.size() > 0) {
+        if (listaclientes.size() > 0) {
             int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
-            cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
+            cliente.setCodCli(ultimocliente + 1);//parte do codigo que seta 
             listaclientes.add(cliente);
-            ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
             cliente = listaclientes.get(codC);
             codC++;
-            ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
-
-        } else {
+        }else {
             listaclientes.add(cliente);
-            ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
             cliente = listaclientes.get(codC);
             codC++;
         }
-        ControledeMilhagem.saidaArquivo(listaclientes, enderecoCli);
-        System.out.println("");
-
-        //Aqui adiciona o objeto cliente na lista de clientes.
-        //listaclientes.add(cliente);
     }
+//        if ((escolha).equals("s")) {
+//            //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
+//
+//            for (Clientes listacliente : listaclientes) {
+//                System.out.println("Os codigos são: " + listacliente.getCodConjuge());
+//            }
+//            System.out.println("Verifique se o conjuge possui código cadastrado?");
+//            escolha2 = scan.next();
+//            if ((escolha2).equals("n")) {
+//                //chamar função de cadastro novamente, para cadastrar o conjuge 
+//                cadastrocliente.cadastroCliente(listaclientes);
+//
+//                int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
+//
+//                cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
+//                listaclientes.add(cliente);
+//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+//                cliente = listaclientes.get(CodConjuge);
+//                CodConjuge++;
+//
+//                ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
+//            } else {
+//                listaclientes.add(cliente);
+//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+//                cliente = listaclientes.get(codC);
+//                codC++;
+//
+//                listaclientes.add(cliente);
+//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+//                cliente = listaclientes.get(CodConjuge);
+//                CodConjuge++;
+//            }
+//        }
+//    }
+//
+//    else if (listaclientes.size () 
+//        > 0) {
+//            int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
+//        cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
+//        listaclientes.add(cliente);
+//        ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+//        cliente = listaclientes.get(codC);
+//        codC++;
+//        ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
+//
+//    }
+//
+//    
+//        else {
+//            listaclientes.add(cliente);
+//        ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+//        cliente = listaclientes.get(codC);
+//        codC++;
+//    }
+//    //ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
+//
+//    System.out.println (
+//
+//"");
+//
+//        //Aqui adiciona o objeto cliente na lista de clientes.
+//        //listaclientes.add(cliente);
+//    }
 
     public void excluirCliente(ArrayList<Clientes> listaclientes) {
-        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
         //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
         System.out.println("Informe o codigo do cliente");
         int codigo = scan.nextInt();
@@ -187,12 +181,12 @@ public class Metodos implements Serializable{
     }
 
     public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
 
     }
 
     public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
 
     }
 
@@ -212,7 +206,7 @@ public class Metodos implements Serializable{
          */
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
-        ControledeMilhagem.saidaArquivo(listaVoos, enderecoVoo);
+        ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoo);
     }
 
     public void excluirVoo(ArrayList<Voos> listavoo, int codigo) {
@@ -240,23 +234,23 @@ public class Metodos implements Serializable{
     }
 
     public void historicoVooCliente(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
-        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
 
     public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
-        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
 
     public void saldoMilhasFamiliar(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
-        listaclientes = ControledeMilhagem.entradaArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.entradaArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.entradaArquivo(listavoos, enderecoVoo);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
 
