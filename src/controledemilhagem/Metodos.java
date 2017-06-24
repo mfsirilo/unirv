@@ -173,7 +173,6 @@ public class Metodos implements Serializable {
                 if(cli.getCodConjuge()==-1)
                     NomeConjuge = "Não informado";
                 else{
-                    indiceconjuge = retornaIndiceCliente(cli.getCodConjuge(), listaclientes);
                     NomeConjuge = listaclientes.get(retornaIndiceCliente(cli.getCodConjuge(),
                             listaclientes)).getNome();
                 }
@@ -194,7 +193,6 @@ public class Metodos implements Serializable {
             if(codC==-1)
                     NomeConjuge = "Não informado";
                 else{
-                    indiceconjuge = retornaIndiceCliente(codC, listaclientes);
                     NomeConjuge = listaclientes.get(retornaIndiceCliente(codC,
                             listaclientes)).getNome();
                 }
