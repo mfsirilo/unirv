@@ -1,6 +1,8 @@
 package controledemilhagem;
 
-public class Voos {
+import java.io.*;
+
+public class Voos implements Serializable{
 
     private int codigoVoo;
     private String origem;

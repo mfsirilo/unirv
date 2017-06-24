@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-public class ControledeMilhagem {
+public class ControledeMilhagem implements Serializable{
 
     public static ArrayList saidaArquivo(ArrayList arraylist, String enderecoArquivo) {
 
@@ -26,7 +26,7 @@ public class ControledeMilhagem {
         try {
             InputStream entrada = new FileInputStream(enderecoArquivo);
             ObjectInputStream leitorObjetos = new ObjectInputStream(entrada);
-            arraylist = (ArrayList) leitorObjetos.readObject();
+            arraylist = (ArrayList)leitorObjetos.readObject();
             entrada.close();
             return arraylist;
         } catch (Exception e) {
@@ -41,7 +41,8 @@ public class ControledeMilhagem {
         ArrayList<Voocliente> listaVooClientes = new ArrayList();
         ArrayList<Voos> listaVoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
-
+        
+        listaVoos = entradaArquivo(listaVoos, Metodos.enderecoVoo);
         
         Metodos metodos = new Metodos();
 

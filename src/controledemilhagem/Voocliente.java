@@ -1,9 +1,10 @@
 package controledemilhagem;
 
+import java.io.*;
 import java.util.*;
 import java.text.*;
 
-public class Voocliente {
+public class Voocliente implements Serializable{
     private int codVooCli;
     private int codVoo;
     private int data;

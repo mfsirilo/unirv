@@ -3,18 +3,18 @@ package controledemilhagem;
 import java.io.*;
 import java.util.*;
 
-public class Metodos {
+public class Metodos implements Serializable{
 
-    String enderecoCli = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
-    String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
-    String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
+//    String enderecoCli = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
+//    String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
+//    String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
 
-    /*String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
-    String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
-    String enderecoVoo = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Voo.bin";
-     */
+    static String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
+    static String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
+    static String enderecoVoo = "D:\\Facul\\ControleMilhagemClientes\\Voo.bin";
+    
     Scanner scan = new Scanner(System.in);
-    int codC = 0, codCV = 0, codV = 0, CodConjuge = 0;
+    int codC = 0, codCV = 0, codV = 0, CodConjuge = -1;
 
     public static void limparTela() {
         for (int i = 0; i != 20; ++i) {
@@ -212,6 +212,7 @@ public class Metodos {
          */
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
+        ControledeMilhagem.saidaArquivo(listaVoos, enderecoVoo);
     }
 
     public void excluirVoo(ArrayList<Voos> listavoo, int codigo) {

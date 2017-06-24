@@ -3,7 +3,7 @@ package controledemilhagem;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Clientes {
+public class Clientes implements Serializable{
 
     private int codCli;
     private String nome;
