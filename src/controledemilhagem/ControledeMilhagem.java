@@ -5,6 +5,7 @@ import java.util.*;
 import java.text.*;
 
 public class ControledeMilhagem implements Serializable {
+
     public static ArrayList gravamentoArquivo(ArrayList arraylist, String enderecoArquivo) {
         try {
             FileOutputStream saida = new FileOutputStream(enderecoArquivo);
@@ -18,6 +19,7 @@ public class ControledeMilhagem implements Serializable {
             return arraylist;
         }
     }
+
     public static ArrayList leituramentoArquivo(ArrayList arraylist, String enderecoArquivo) {
         try {
             InputStream entrada = new FileInputStream(enderecoArquivo);
@@ -30,6 +32,7 @@ public class ControledeMilhagem implements Serializable {
             return arraylist;
         }
     }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
@@ -63,9 +66,9 @@ public class ControledeMilhagem implements Serializable {
                     while (opcao2 != 0) {
 
                         switch (opcao2) {
-                            
+
                             case 1:
-                            
+
                                 metodos.limparTela();
 
                                 String nome;
@@ -92,6 +95,9 @@ public class ControledeMilhagem implements Serializable {
 
                                 metodos.imprimeCliente(listaclientes, (listaclientes.size() - 1));
                                 System.out.println(" ====================== ");
+                                gravamentoArquivo(listaclientes, Metodos.enderecoCli);
+                                gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
+
                                 System.out.println("Cliente Cadastrado:");
                                 System.out.println("");
 
@@ -100,12 +106,9 @@ public class ControledeMilhagem implements Serializable {
 
                                 System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
                                 escolha = scan.nextLine();
-                                System.out.println("");
-                                
                                 if ((escolha).equals("s")) {
-                                    System.out.println("Conjuge já é cliente?");
+                                    System.out.println("Conjuge já é cliente? \ns - Para sim \nn - Para não");
                                     escolha2 = scan.nextLine();
-                                    System.out.println("");
                                     if ((escolha2).equals("s")) {
                                         metodos.imprimeCliente(listaclientes, 0);
                                         System.out.println("Informe o codigo do conjuge");
@@ -115,8 +118,9 @@ public class ControledeMilhagem implements Serializable {
                                         listaclientes.get(listaclientes.size() - 1).setCodConjuge(codigoConjugeCadastrado);
                                         codigoAux = listaclientes.get(listaclientes.size() - 1).getCodCli();
                                         listaclientes.get(metodos.retornaIndiceCliente(codigoConjugeCadastrado, listaclientes)).setCodConjuge(codigoAux);
+                                        gravamentoArquivo(listaclientes, Metodos.enderecoCli);
+                                        gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
                                     } else if ((escolha2).equals("n")) {
-                                        System.out.println("");
                                         System.out.println("Informe o nome do cliente");
                                         nome = scan.nextLine();
                                         System.out.println("Informe o sexo");
@@ -128,8 +132,12 @@ public class ControledeMilhagem implements Serializable {
                                         scan.nextLine();
                                         codigoConjuge = listaclientes.get(listaclientes.size() - 1).getCodCli();
                                         metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
-                                        codigoConjuge = listaclientes.get(listaclientes.size() - 2).getCodCli();
-                                        listaclientes.get(listaclientes.size() - 1).setCodConjuge(codigoConjuge);
+                                        metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
+                                        gravamentoArquivo(listaclientes, Metodos.enderecoCli);
+                                        gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
+                                        //codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                        //listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
+
                                     }
                                 }
                                 break;
@@ -159,7 +167,7 @@ public class ControledeMilhagem implements Serializable {
                     break;
 
                 case 2:
-                    
+
                     metodos.menuVoo();
                     opcao2 = scan.nextInt();
                     while (opcao2 != 0) {
@@ -179,7 +187,7 @@ public class ControledeMilhagem implements Serializable {
                                 scan.nextLine();
                                 metodos.cadastroVoo(listaVoos, codV, origem, destino, dist);
                                 break;
-                            
+
                             case 2:
                                 metodos.limparTela();
                                 System.out.println(" ======================================== ");
@@ -205,7 +213,7 @@ public class ControledeMilhagem implements Serializable {
                     break;
 
                 case 3:
-                    
+
                     metodos.menuRelatorio();
                     opcao2 = scan.nextInt();
                     while (opcao2 != 0) {

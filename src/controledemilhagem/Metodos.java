@@ -160,6 +160,9 @@ public class Metodos implements Serializable {
         int indiceconjuge;
         int codC;
         if (codigo == 0) {
+            System.out.println("=======================================");
+            System.out.println("Lista de todos os clientes");
+            System.out.println("=======================================");
             for (Clientes cli : listaclientes) {
                 System.out.println("Codigo: " + cli.getCodCli());
                 System.out.println("Nome: " + cli.getNome());
@@ -167,13 +170,19 @@ public class Metodos implements Serializable {
                 System.out.println("CPF: " + cli.getCpf());
                 System.out.println("Categoria: " + cli.getCategoria());
                 System.out.println("Codigo do Conjuge: " + cli.getCodConjuge());
-                indiceconjuge = retornaIndiceCliente(cli.getCodConjuge(), listaclientes);
-                NomeConjuge = listaclientes.get(retornaIndiceCliente(cli.getCodConjuge(),
-                        listaclientes)).getNome();
+                if(cli.getCodConjuge()==-1)
+                    NomeConjuge = "Não informado";
+                else{
+                    indiceconjuge = retornaIndiceCliente(cli.getCodConjuge(), listaclientes);
+                    NomeConjuge = listaclientes.get(retornaIndiceCliente(cli.getCodConjuge(),
+                            listaclientes)).getNome();
+                }
                 System.out.println("Nome Conjuge: " + NomeConjuge);
+                System.out.println("----------------------------------");
             }
         } else {
             int indice = retornaIndiceCliente(codigo, listaclientes);
+            System.out.println("=======================================");
             System.out.println("Indice: " + indice);
             System.out.println("Codigo: " + listaclientes.get(indice).getCodCli());
             System.out.println("Nome: " + listaclientes.get(indice).getNome());
@@ -182,9 +191,15 @@ public class Metodos implements Serializable {
             System.out.println("Categoria: " + listaclientes.get(indice).getCategoria());
             codC = listaclientes.get(indice).getCodConjuge();
             System.out.println("Codigo do Conjuge: " + codC);
-            indiceconjuge = retornaIndiceCliente(codC, listaclientes);
-            NomeConjuge = listaclientes.get(indiceconjuge).getNome();
+            if(codC==-1)
+                    NomeConjuge = "Não informado";
+                else{
+                    indiceconjuge = retornaIndiceCliente(codC, listaclientes);
+                    NomeConjuge = listaclientes.get(retornaIndiceCliente(codC,
+                            listaclientes)).getNome();
+                }
             System.out.println("Nome Conjuge: " + NomeConjuge);
+            System.out.println("=======================================");
         }
     }
 
