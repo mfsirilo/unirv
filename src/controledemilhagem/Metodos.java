@@ -9,9 +9,9 @@ public class Metodos implements Serializable {
     static String enderecoVoclilinux = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
     static String enderecoVoolinux = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
 
-    static String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
-    static String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
-    static String enderecoVoo = "D:\\Facul\\ControleMilhagemClientes\\Voo.bin";
+    static String enderecoCli = "D:\\Facul\\ControleMilhagem\\Clientes.bin";
+    static String enderecoVocli = "D:\\Facul\\ControleMilhagem\\VooClientes.bin";
+    static String enderecoVoo = "D:\\Facul\\ControleMilhagem\\Voo.bin";
 
     Scanner scan = new Scanner(System.in);
     int codC = 0, codCV = 0, codV = 0;
@@ -169,6 +169,7 @@ public class Metodos implements Serializable {
             }
         } else {
             int indice = retornaIndiceCliente(codigo, listaclientes);
+            System.out.println("Indice: " + indice);
             System.out.println("Codigo: " + listaclientes.get(indice).getCodCli());
             System.out.println("Nome: " + listaclientes.get(indice).getNome());
             System.out.println("Sexo: " + listaclientes.get(indice).getSexo());
