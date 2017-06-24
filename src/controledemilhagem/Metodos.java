@@ -5,10 +5,6 @@ import java.util.*;
 
 public class Metodos implements Serializable {
 
-    static String enderecoClilinux = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
-    static String enderecoVoclilinux = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
-    static String enderecoVoolinux = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
-
     static String enderecoCli = "D:\\Facul\\ControleMilhagem\\Clientes.bin";
     static String enderecoVocli = "D:\\Facul\\ControleMilhagem\\VooClientes.bin";
     static String enderecoVoo = "D:\\Facul\\ControleMilhagem\\Voo.bin";
@@ -52,20 +48,20 @@ public class Metodos implements Serializable {
         Metodos cadastrocliente = new Metodos();
         //Carrega os clientes do arquivo pra lista
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoClilinux);
+
         Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
         if (listaclientes.size() > 0) {
             int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
             cliente.setCodCli(ultimocliente + 1);//parte do codigo que seta 
             listaclientes.add(cliente);
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
-            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoClilinux);
+
             cliente = listaclientes.get(codC);
             codC++;
         } else {
             listaclientes.add(cliente);
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
-            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoClilinux);
+
             cliente = listaclientes.get(codC);
             codC++;
         }
@@ -136,7 +132,7 @@ public class Metodos implements Serializable {
 
     public void excluirCliente(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoClilinux);
+
         //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
         System.out.println("Informe o codigo do cliente");
         int codigo = scan.nextInt();
@@ -219,13 +215,11 @@ public class Metodos implements Serializable {
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
         ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoo);
-        ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoolinux);
+//        ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoolinux);
     }
 
     public void imprimeVoo(ArrayList<Voos> listaVoos) {
         //ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoCli);
-        //ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoClilinux);
-
         for (Voos voo : listaVoos) {
             System.out.println("Codigo: " + voo.getCodigoVoo());
             System.out.println("Codigo: " + voo.getOrigem());
