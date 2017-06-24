@@ -43,7 +43,8 @@ public class ControledeMilhagem implements Serializable {
         ArrayList<Clientes> listaclientes = new ArrayList();
 
         listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
-
+        listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+        
         Metodos metodos = new Metodos();
 
         int opcao1, opcao2, opcao3;
@@ -73,13 +74,13 @@ public class ControledeMilhagem implements Serializable {
                                 String escolha2;
 
                                 System.out.println("Informe o nome do cliente");
-                                nome = scan.next();
+                                nome = scan.nextLine();
                                 System.out.println("Informe o sexo");
-                                sexo = scan.next();
+                                sexo = scan.nextLine();
                                 System.out.println("Informe o CPF");
-                                cpf = scan.next();
+                                cpf = scan.nextLine();
                                 System.out.println("Informe a categoria - ");
-                                categoria = scan.nextInt();
+                                categoria = scan.nextInt(); scan.nextLine();
                                 
                                 int codigoConjuge = -1;
                                 metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
@@ -89,7 +90,7 @@ public class ControledeMilhagem implements Serializable {
                                 metodos.imprimeCliente(listaclientes, (listaclientes.size() - 1));
                                 
                                 System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
-                                escolha = scan.next();
+                                escolha = scan.nextLine();
                                 if((escolha).equals("s")){
                                     System.out.println("Conjuge já é cliente?");
                                     escolha2 = scan.nextLine();
@@ -97,11 +98,24 @@ public class ControledeMilhagem implements Serializable {
                                             metodos.imprimeCliente(listaclientes, 0);
                                             System.out.println("Informe o codigo do conjuge");
                                             int codigoAux = scan.nextInt(); scan.nextLine();
-                                            int x = listaclientes.get(metodos.retornaIndiceCliente(codigoAux, listaclientes)).getCodCli();
-                                            listaclientes.get(listaclientes.size()-1).setCodConjuge(x);
-                                            int y = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                            listaclientes.get(x)
-                                            
+                                            int codigoConjugeCadastrado = listaclientes.get(metodos.retornaIndiceCliente(codigoAux, listaclientes)).getCodCli();
+                                            listaclientes.get(listaclientes.size()-1).setCodConjuge(codigoConjugeCadastrado);
+                                            codigoAux = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                            listaclientes.get(metodos.retornaIndiceCliente(codigoConjugeCadastrado, listaclientes)).setCodConjuge(codigoAux);
+                                        }else if((escolha2).equals("n")){
+                                            System.out.println("Informe o nome do cliente");
+                                            nome = scan.nextLine();
+                                            System.out.println("Informe o sexo");
+                                            sexo = scan.nextLine();
+                                            System.out.println("Informe o CPF");
+                                            cpf = scan.nextLine();
+                                            System.out.println("Informe a categoria - ");
+                                            categoria = scan.nextInt(); scan.nextLine();
+                                            codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                            metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
+                                            codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                            listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
+                                
                                         }
                                 }
                                 
