@@ -53,7 +53,7 @@ public class ControledeMilhagem implements Serializable {
         int opcao1, opcao2, opcao3;
 
         metodos.Menuprincipal();
-        opcao1 = scan.nextInt();
+        opcao1 = scan.nextInt(); 
 
         while (opcao1 != 0) {
 
@@ -95,7 +95,7 @@ public class ControledeMilhagem implements Serializable {
                                 System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
                                 escolha = scan.nextLine();
                                 if((escolha).equals("s")){
-                                    System.out.println("Conjuge já é cliente?");
+                                    System.out.println("Conjuge já é cliente? \ns - Para sim \nn - Para não");
                                     escolha2 = scan.nextLine();
                                         if ((escolha2).equals("s")){
                                             metodos.imprimeCliente(listaclientes, 0);
@@ -116,8 +116,9 @@ public class ControledeMilhagem implements Serializable {
                                             categoria = scan.nextInt(); scan.nextLine();
                                             codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
                                             metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
-                                            codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                            listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
+                                            metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
+                                            //codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                            //listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
                                 
                                         }
                                 }
