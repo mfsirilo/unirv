@@ -45,6 +45,9 @@ public class ControledeMilhagem implements Serializable {
         listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
         
+        listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoolinux);
+        listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoClilinux);
+        
         Metodos metodos = new Metodos();
 
         int opcao1, opcao2, opcao3;

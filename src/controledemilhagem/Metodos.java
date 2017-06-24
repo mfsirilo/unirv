@@ -51,17 +51,20 @@ public class Metodos implements Serializable {
         Metodos cadastrocliente = new Metodos();
         //Carrega os clientes do arquivo pra lista
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoClilinux);
         Clientes cliente = new Clientes(codC, nome, sexo, cpf, categoria, CodConjuge);
         if (listaclientes.size() > 0) {
             int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
             cliente.setCodCli(ultimocliente + 1);//parte do codigo que seta 
             listaclientes.add(cliente);
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
+            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoClilinux);
             cliente = listaclientes.get(codC);
             codC++;
         } else {
             listaclientes.add(cliente);
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
+            ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoClilinux);
             cliente = listaclientes.get(codC);
             codC++;
         }
@@ -132,6 +135,7 @@ public class Metodos implements Serializable {
 
     public void excluirCliente(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoClilinux);
         //Aqui busca o cliente pelo código e usa o método remove para tirar o cliente da lista
         System.out.println("Informe o codigo do cliente");
         int codigo = scan.nextInt();
