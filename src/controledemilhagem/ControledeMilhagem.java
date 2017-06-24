@@ -159,9 +159,14 @@ public class ControledeMilhagem implements Serializable {
                                 int codigoVoo = scan.nextInt();
                                 metodos.excluirVoo(listaVoos, codigoVoo);
                                 break;
-
+                                
+                            case 3:
+                                metodos.limparTela();
+                                System.out.println(" ======================================== ");
+                                System.out.println("");
+                                metodos.imprimeVoo(listaVoos);
+                                break;
                         }
-                        metodos.limparTela();
                         metodos.menuVoo();
                         opcao2 = scan.nextInt();
 

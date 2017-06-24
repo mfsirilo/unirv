@@ -5,9 +5,10 @@ import java.util.*;
 
 public class Metodos implements Serializable {
 
-//    String enderecoCli = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
-//    String enderecoVocli = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
-//    String enderecoVoo = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
+    static String enderecoClilinux = "/home/marcos/Documentos/pratica3/Trabalhos/Clientes.bin";
+    static String enderecoVoclilinux = "/home/marcos/Documentos/pratica3/Trabalhos/VooCliente.bin";
+    static String enderecoVoolinux = "/home/marcos/Documentos/pratica3/Trabalhos/Voo.bin";
+
     static String enderecoCli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\Clientes.bin";
     static String enderecoVocli = "C:\\Users\\Bruno\\Desktop\\Facul\\ControleMilhagemClientes\\VooCliente.bin";
     static String enderecoVoo = "D:\\Facul\\ControleMilhagemClientes\\Voo.bin";
@@ -58,7 +59,7 @@ public class Metodos implements Serializable {
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
             cliente = listaclientes.get(codC);
             codC++;
-        }else {
+        } else {
             listaclientes.add(cliente);
             ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
             cliente = listaclientes.get(codC);
@@ -148,12 +149,13 @@ public class Metodos implements Serializable {
         }
         return index;
     }
-    public void imprimeCliente(ArrayList<Clientes> listaclientes, int codigo){
+
+    public void imprimeCliente(ArrayList<Clientes> listaclientes, int codigo) {
         String NomeConjuge;
         int indiceconjuge;
         int codC;
-        if (codigo==0){
-            for(Clientes cli: listaclientes){
+        if (codigo == 0) {
+            for (Clientes cli : listaclientes) {
                 System.out.println("Codigo: " + cli.getCodCli());
                 System.out.println("Nome: " + cli.getNome());
                 System.out.println("Sexo: " + cli.getSexo());
@@ -165,7 +167,7 @@ public class Metodos implements Serializable {
                         listaclientes)).getNome();
                 System.out.println("Nome Conjuge: " + NomeConjuge);
             }
-        }else{
+        } else {
             int indice = retornaIndiceCliente(codigo, listaclientes);
             System.out.println("Codigo: " + listaclientes.get(indice).getCodCli());
             System.out.println("Nome: " + listaclientes.get(indice).getNome());
@@ -176,24 +178,15 @@ public class Metodos implements Serializable {
             System.out.println("Codigo do Conjuge: " + codC);
             indiceconjuge = retornaIndiceCliente(codC, listaclientes);
             NomeConjuge = listaclientes.get(indiceconjuge).getNome();
-                System.out.println("Nome Conjuge: " + NomeConjuge);                                      
+            System.out.println("Nome Conjuge: " + NomeConjuge);
         }
-    }
-
-    public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-
-    }
-
-    public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-
     }
 
     public void menuVoo() {
         System.out.println("========================================");
         System.out.println("Digite 1 para cadastro de Voo: ");
         System.out.println("Digite 2 para excluir de Voo: ");
+        System.out.println("Digite 3 para imprimir todos Voos cadastrados: ");
         System.out.println("");
         System.out.println("Digite 0 para voltar ao Menu Principal");
         System.out.println("");
@@ -207,10 +200,38 @@ public class Metodos implements Serializable {
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
         ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoo);
+        ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoolinux);
+    }
+
+    public void imprimeVoo(ArrayList<Voos> listaVoos) {
+        //ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoCli);
+        //ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoClilinux);
+
+        for (Voos voo : listaVoos) {
+            System.out.println("Codigo: " + voo.getCodigoVoo());
+            System.out.println("Codigo: " + voo.getOrigem());
+            System.out.println("Codigo: " + voo.getDestino());
+            System.out.println("Codigo: " + voo.getDistancia());
+            System.out.println("---------------------------------");
+        }
+        System.out.println("");
+        System.out.println("FIM DA LISTA DE VOOS");
+        System.out.println("");
+
     }
 
     public void excluirVoo(ArrayList<Voos> listavoo, int codigo) {
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
+    }
+
+    public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+
+    }
+
+    public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
+        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+
     }
 
     public static int retornaIndiceVoos(int codigo, ArrayList<Voos> listaVoos) {
