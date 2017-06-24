@@ -66,6 +66,14 @@ public class Metodos implements Serializable {
             codC++;
         }
     }
+    
+    //Metodo de chamamento do ultimo codigo. 
+    public static int ultimoCodigo(ArrayList<Clientes> listaclientes, int ultimocodigo) {
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
+        ultimocodigo = listaclientes.get(listaclientes.size()).getCodCli();
+        return ultimocodigo;
+    }
+
 //        if ((escolha).equals("s")) {
 //            //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
 //
@@ -129,7 +137,6 @@ public class Metodos implements Serializable {
 //        //Aqui adiciona o objeto cliente na lista de clientes.
 //        //listaclientes.add(cliente);
 //    }
-
     public void excluirCliente(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
 
@@ -166,9 +173,9 @@ public class Metodos implements Serializable {
                 System.out.println("CPF: " + cli.getCpf());
                 System.out.println("Categoria: " + cli.getCategoria());
                 System.out.println("Codigo do Conjuge: " + cli.getCodConjuge());
-                if(cli.getCodConjuge()==-1)
+                if (cli.getCodConjuge() == -1) {
                     NomeConjuge = "Não informado";
-                else{
+                } else {
                     NomeConjuge = listaclientes.get(retornaIndiceCliente(cli.getCodConjuge(),
                             listaclientes)).getNome();
                 }
@@ -186,12 +193,12 @@ public class Metodos implements Serializable {
             System.out.println("Categoria: " + listaclientes.get(indice).getCategoria());
             codC = listaclientes.get(indice).getCodConjuge();
             System.out.println("Codigo do Conjuge: " + codC);
-            if(codC==-1)
-                    NomeConjuge = "Não informado";
-                else{
-                    NomeConjuge = listaclientes.get(retornaIndiceCliente(codC,
-                            listaclientes)).getNome();
-                }
+            if (codC == -1) {
+                NomeConjuge = "Não informado";
+            } else {
+                NomeConjuge = listaclientes.get(retornaIndiceCliente(codC,
+                        listaclientes)).getNome();
+            }
             System.out.println("Nome Conjuge: " + NomeConjuge);
             System.out.println("=======================================");
         }
@@ -215,7 +222,6 @@ public class Metodos implements Serializable {
         Voos voo = new Voos(codV, origem, destino, dist);
         listaVoos.add(voo);
         ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoo);
-//        ControledeMilhagem.gravamentoArquivo(listaVoos, enderecoVoolinux);
     }
 
     public void imprimeVoo(ArrayList<Voos> listaVoos) {
