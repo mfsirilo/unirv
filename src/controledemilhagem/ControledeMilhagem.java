@@ -131,11 +131,15 @@ public class ControledeMilhagem implements Serializable {
                                         codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
                                         metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
                                         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
-                                        metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
+                                        
                                         gravamentoArquivo(listaclientes, Metodos.enderecoCli);
+                                        
+                                        metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
                                         //gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
-                                        //codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
-                                        //listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
+//                                        codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+//                                        listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
+//                                        listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+//                                        gravamentoArquivo(listaclientes, Metodos.enderecoCli);
 
                                     }
                                 }
