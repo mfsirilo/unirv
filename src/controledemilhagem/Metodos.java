@@ -68,9 +68,9 @@ public class Metodos implements Serializable {
     }
     
     //Metodo de chamamento do ultimo codigo. 
-    public static int ultimoCodigo(ArrayList<Clientes> listaclientes, int ultimocodigo) {
+    public static int ultimoCodigo(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        ultimocodigo = listaclientes.get(listaclientes.size()).getCodCli();
+        int ultimocodigo = listaclientes.get(listaclientes.size()).getCodCli();
         return ultimocodigo;
     }
 

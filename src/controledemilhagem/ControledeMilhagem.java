@@ -129,12 +129,14 @@ public class ControledeMilhagem implements Serializable {
                                         System.out.println("Informe a categoria - 0 Prata, 1 Ouro, 2 Diamante");
                                         categoria = scan.nextInt();scan.nextLine();
                                         codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
+                                        listaclientes.get(listaclientes.size()-1).setCodConjuge(codigoConjuge+1);
+                                        gravamentoArquivo(listaclientes, Metodos.enderecoCli);
                                         metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
                                         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
-                                        
                                         gravamentoArquivo(listaclientes, Metodos.enderecoCli);
                                         
-                                        metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
+                                        //Metodos.ultimoCodigo(listaclientes);
+                                        //metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
                                         //gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
 //                                        codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
 //                                        listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
