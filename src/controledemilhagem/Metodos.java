@@ -70,7 +70,7 @@ public class Metodos implements Serializable {
     //Metodo de chamamento do ultimo codigo. 
     public static int ultimoCodigo(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        int ultimocodigo = listaclientes.get(listaclientes.size()).getCodCli();
+        int ultimocodigo = listaclientes.get(listaclientes.size()-1).getCodCli();
         return ultimocodigo;
     }
 
@@ -144,6 +144,7 @@ public class Metodos implements Serializable {
         System.out.println("Informe o codigo do cliente");
         int codigo = scan.nextInt();
         listaclientes.remove(retornaIndiceCliente(codigo, listaclientes));
+        listaclientes = ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
 
     }
 
@@ -160,6 +161,7 @@ public class Metodos implements Serializable {
 
     public void imprimeCliente(ArrayList<Clientes> listaclientes, int codigo) {
         String NomeConjuge;
+        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
         int indiceconjuge;
         int codC;
         if (codigo == 0) {

@@ -92,7 +92,7 @@ public class ControledeMilhagem implements Serializable {
                                 metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
                                 listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
 
-                                metodos.imprimeCliente(listaclientes, (listaclientes.size() - 1));
+                                metodos.imprimeCliente(listaclientes, Metodos.ultimoCodigo(listaclientes));
                                 System.out.println(" ====================== ");
                                 
                                 //gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
@@ -134,20 +134,12 @@ public class ControledeMilhagem implements Serializable {
                                         metodos.cadastroCliente(listaclientes, nome, sexo, cpf, categoria, codigoConjuge);
                                         listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
                                         gravamentoArquivo(listaclientes, Metodos.enderecoCli);
-                                        
-                                        //Metodos.ultimoCodigo(listaclientes);
-                                        //metodos.retornaIndiceCliente(codigoConjuge, listaclientes);
-                                        //gravamentoArquivo(listaclientes, Metodos.enderecoClilinux);
-//                                        codigoConjuge = listaclientes.get(listaclientes.size()-1).getCodCli();
-//                                        listaclientes.get(listaclientes.size()-2).setCodConjuge(codigoConjuge);
-//                                        listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
-//                                        gravamentoArquivo(listaclientes, Metodos.enderecoCli);
-
                                     }
                                 }
                                 break;
                             case 2:
                                 metodos.limparTela();
+                                //listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
                                 metodos.excluirCliente(listaclientes);
                                 break;
                             case 3:
