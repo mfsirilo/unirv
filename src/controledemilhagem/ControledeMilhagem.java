@@ -144,7 +144,7 @@ public class ControledeMilhagem implements Serializable {
                                 break;
                             case 3:
                                 metodos.limparTela();
-                                metodos.cadastroVoocliente(listaVooClientes);
+                                metodos.cadastroVoocliente(listaclientes);
                                 break;
                             case 4:
                                 metodos.limparTela();

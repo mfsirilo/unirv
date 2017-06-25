@@ -74,69 +74,6 @@ public class Metodos implements Serializable {
         return ultimocodigo;
     }
 
-//        if ((escolha).equals("s")) {
-//            //Inserir metodo de imprimir os conjuges ou codigos dos conjuges 
-//
-//            for (Clientes listacliente : listaclientes) {
-//                System.out.println("Os codigos são: " + listacliente.getCodConjuge());
-//            }
-//            System.out.println("Verifique se o conjuge possui código cadastrado?");
-//            escolha2 = scan.next();
-//            if ((escolha2).equals("n")) {
-//                //chamar função de cadastro novamente, para cadastrar o conjuge 
-//                cadastrocliente.cadastroCliente(listaclientes);
-//
-//                int ultimoconjuge = listaclientes.get(listaclientes.size() - 1).getCodConjuge();
-//
-//                cliente.setCodConjuge(ultimoconjuge + 1);//parte do codigo que seta 
-//                listaclientes.add(cliente);
-//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-//                cliente = listaclientes.get(CodConjuge);
-//                CodConjuge++;
-//
-//                ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
-//            } else {
-//                listaclientes.add(cliente);
-//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-//                cliente = listaclientes.get(codC);
-//                codC++;
-//
-//                listaclientes.add(cliente);
-//                ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-//                cliente = listaclientes.get(CodConjuge);
-//                CodConjuge++;
-//            }
-//        }
-//    }
-//
-//    else if (listaclientes.size () 
-//        > 0) {
-//            int ultimocliente = listaclientes.get(listaclientes.size() - 1).getCodCli();
-//        cliente.setCodConjuge(ultimocliente + 1);//parte do codigo que seta 
-//        listaclientes.add(cliente);
-//        ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-//        cliente = listaclientes.get(codC);
-//        codC++;
-//        ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
-//
-//    }
-//
-//    
-//        else {
-//            listaclientes.add(cliente);
-//        ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-//        cliente = listaclientes.get(codC);
-//        codC++;
-//    }
-//    //ControledeMilhagem.gravamentoArquivo(listaclientes, enderecoCli);
-//
-//    System.out.println (
-//
-//"");
-//
-//        //Aqui adiciona o objeto cliente na lista de clientes.
-//        //listaclientes.add(cliente);
-//    }
     public void excluirCliente(ArrayList<Clientes> listaclientes) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
 
@@ -227,7 +164,7 @@ public class Metodos implements Serializable {
     }
 
     public void imprimeVoo(ArrayList<Voos> listaVoos) {
-        //ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoCli);
+        ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoVoo);
         for (Voos voo : listaVoos) {
             System.out.println("Codigo: " + voo.getCodigoVoo());
             System.out.println("Codigo: " + voo.getOrigem());
@@ -245,9 +182,11 @@ public class Metodos implements Serializable {
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
     }
 
-    public void cadastroVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-
+    public void cadastroVoocliente(ArrayList<Clientes> listaclientes) {
+        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        String enderecoArquivo;
+        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + listaclientes.get(1).getNome()+listaclientes.get(1).getCodCli()+".bin";
+        System.out.println("Endereço teste -> " + enderecoArquivo);
     }
 
     public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
