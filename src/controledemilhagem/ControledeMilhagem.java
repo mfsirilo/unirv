@@ -136,9 +136,11 @@ public class ControledeMilhagem implements Serializable {
                                 }
                                 break;
                             case 2:
+                                
                                 metodos.limparTela();
                                 //listaclientes = leituramentoArquivo(listaclientes, Metodos.enderecoCli);
                                 metodos.excluirCliente(listaclientes);
+                                
                                 break;
                             case 3:
                                 metodos.limparTela();
