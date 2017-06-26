@@ -268,6 +268,7 @@ public class Metodos implements Serializable {
         cliente = retornaCliente(listaclientes, codigo);
         String enderecoArquivo;
         enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome() + cliente.getCodCli() + ".bin";
+        listaVooClientes.clear();
         listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
 
         System.out.println("=======================================");
@@ -311,10 +312,10 @@ public class Metodos implements Serializable {
             distancia = distancia * 0.621;
         }
         if (categoria == 1) {
-            distancia = (distancia * 0.621) * 1.5;
+            distancia = ((distancia * 0.621) * 1.5);
         }
         if (categoria == 2) {
-            distancia = (distancia * 0.621) * 2;
+            distancia = ((distancia * 0.621) * 2);
         }
         System.out.println("=======================================");
         System.out.println("Saldo de Milhas individual é:");
@@ -337,6 +338,7 @@ public class Metodos implements Serializable {
             conjuge = retornaCliente(listaclientes, cliente.getCodConjuge());
             String enderecoArquivo;
             enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome() + cliente.getCodCli() + ".bin";
+            listaVooClientes.clear();
             listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
             for (Voocliente vcli : listaVooClientes) {
                 int codVoo = vcli.getCodVoo();
