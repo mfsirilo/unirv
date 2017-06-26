@@ -165,7 +165,7 @@ public class Metodos implements Serializable {
     }
 
     public void imprimeVoo(ArrayList<Voos> listaVoos) {
-        ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoVoo);
+        listaVoos = ControledeMilhagem.leituramentoArquivo(listaVoos, enderecoVoo);
         for (Voos voo : listaVoos) {
             System.out.println("Codigo: " + voo.getCodigoVoo());
             System.out.println("Codigo: " + voo.getOrigem());
@@ -181,6 +181,7 @@ public class Metodos implements Serializable {
 
     public void excluirVoo(ArrayList<Voos> listavoo, int codigo) {
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
+        ControledeMilhagem.gravamentoArquivo(listavoo, enderecoVoo);
     }
 
     public void cadastroVoocliente(Clientes cliente, Voos voo, int data, int hora) {
@@ -224,11 +225,19 @@ public class Metodos implements Serializable {
         System.out.println("");
     }
 
-    public void historicoVooCliente(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
+    public void historicoVooCliente(ArrayList<Clientes> listaclientes, int codigo) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
-
+        int indice = retornaIndiceCliente(codigo, listaclientes);
+        Clientes cliente = new Clientes();
+        cliente = listaclientes.get(indice);
+        String enderecoArquivo;
+        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
+        listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
+        for(Voocliente vcli : listaVooClientes){
+            System.out.println("Codigo Voo: " + vcli.getCodVoo());
+            System.out.println("Codigo Data: " + vcli.getData());
+            System.out.println("Codigo Hora: " + vcli.getHora());
+        }
     }
 
     public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {

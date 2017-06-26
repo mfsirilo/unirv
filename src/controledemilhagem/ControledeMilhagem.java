@@ -197,6 +197,7 @@ public class ControledeMilhagem implements Serializable {
                                 System.out.println("Eu nao sei calcular a distancia, informa aê mano:");
                                 float dist = scan.nextFloat();
                                 scan.nextLine();
+                                listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
                                 metodos.cadastroVoo(listaVoos, codV, origem, destino, dist);
                                 break;
 
@@ -211,6 +212,7 @@ public class ControledeMilhagem implements Serializable {
                                 metodos.limparTela();
                                 System.out.println("Informe o código do voo: ");
                                 int codigoVoo = scan.nextInt();
+                                listaVoos = leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
                                 metodos.excluirVoo(listaVoos, codigoVoo);
                                 break;
 
@@ -232,7 +234,11 @@ public class ControledeMilhagem implements Serializable {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                //metodos.historicoVooCliente(listaclientes, listaVooClientes, listaVoos);
+                                listaclientes=leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+                                metodos.imprimeCliente(listaclientes, 0);
+                                System.out.println("Informe o codigo do cliente: ");
+                                int codigo = scan.nextInt(); scan.nextLine();
+                                metodos.historicoVooCliente(listaclientes, codigo);
                                 break;
 
                             case 2:
