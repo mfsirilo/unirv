@@ -163,7 +163,11 @@ public class ControledeMilhagem implements Serializable {
                                 break;
                             case 4:
                                 metodos.limparTela();
-                                //metodos.excluirVoocliente(listaVooClientes);
+                                metodos.imprimeCliente(listaclientes, 0);
+                                System.out.println("Informe o codigo do cliente: ");
+                                codigo = scan.nextInt(); scan.nextLine();
+                                auxCli = listaclientes.get(Metodos.retornaIndiceCliente(codigo, listaclientes));
+                                metodos.excluirVoocliente(auxCli);
                                 break;
                             case 5:
                                 metodos.limparTela();
@@ -234,7 +238,7 @@ public class ControledeMilhagem implements Serializable {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                listaclientes=leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+                                //listaclientes=leituramentoArquivo(listaclientes, Metodos.enderecoCli);
                                 metodos.imprimeCliente(listaclientes, 0);
                                 System.out.println("Informe o codigo do cliente: ");
                                 int codigo = scan.nextInt(); scan.nextLine();
@@ -243,12 +247,22 @@ public class ControledeMilhagem implements Serializable {
 
                             case 2:
                                 metodos.limparTela();
-                               // metodos.saldoMilhasIndividual(listaclientes, listaVooClientes, listaVoos);
+                                listaclientes=leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+                                listaclientes=leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
+                                metodos.imprimeCliente(listaclientes, 0);
+                                System.out.println("Informe o codigo do cliente: ");
+                                codigo = scan.nextInt(); scan.nextLine();
+                                metodos.saldoMilhasIndividual(listaclientes, codigo,listaVoos);
                                 break;
 
                             case 3:
                                 metodos.limparTela();
-                               //1 metodos.saldoMilhasFamiliar(listaclientes, listaVooClientes, listaVoos);
+                                listaclientes=leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+                                listaclientes=leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
+                                metodos.imprimeCliente(listaclientes, 0);
+                                System.out.println("Informe o codigo do cliente: ");
+                                codigo = scan.nextInt(); scan.nextLine();
+                                metodos.saldoMilhasFamiliar(listaclientes, codigo, listaVoos);
                                 break;
                         }
                         metodos.menuRelatorio();

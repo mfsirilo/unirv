@@ -200,11 +200,29 @@ public class Metodos implements Serializable {
         
     }
 
-    public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
-        
+    public void excluirVoocliente(Clientes cliente) {
+        String enderecoArquivo;
+        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
+        listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
+        for(Voocliente vcli : listaVooClientes){
+            System.out.println("Codigo do Voo: " + vcli.getCodVoo());
+        }
+        System.out.println("Informe o codigo do voo a ser excluido: ");
+        int codvoo = scan.nextInt(); scan.nextLine();
+        listaVooClientes.remove(retornaIndiceVoosClientes(codvoo, listaVooClientes));
+        listaVooClientes = ControledeMilhagem.gravamentoArquivo(listaVooClientes, enderecoArquivo);
 
     }
 
+    public static int retornaIndiceVoosClientes(int codVoo, ArrayList<Voocliente> listaVooClientes) {
+        int index = 0;
+        for (int i = 0; i < listaVooClientes.size(); i++) {
+            if (listaVooClientes.get(i).getCodVoo()== codVoo) {
+                index = i;
+            }
+        }
+        return index;
+    }
     public static int retornaIndiceVoos(int codigo, ArrayList<Voos> listaVoos) {
         int index = 0;
         for (int i = 0; i < listaVoos.size(); i++) {
@@ -226,10 +244,8 @@ public class Metodos implements Serializable {
     }
 
     public void historicoVooCliente(ArrayList<Clientes> listaclientes, int codigo) {
-        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        int indice = retornaIndiceCliente(codigo, listaclientes);
         Clientes cliente = new Clientes();
-        cliente = listaclientes.get(indice);
+        cliente = retornaCliente(listaclientes, codigo);
         String enderecoArquivo;
         enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
         listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
@@ -239,18 +255,79 @@ public class Metodos implements Serializable {
             System.out.println("Codigo Hora: " + vcli.getHora());
         }
     }
-
-    public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
+    
+    public Clientes retornaCliente(ArrayList<Clientes> listaclientes, int codigo){
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
-
+        int indice = retornaIndiceCliente(codigo, listaclientes);
+        Clientes cliente = new Clientes();
+        cliente = listaclientes.get(indice);
+        return cliente;
+    }
+    public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, int codigo, ArrayList<Voos> listaVoos) {
+        Clientes cliente = new Clientes();
+        cliente = retornaCliente(listaclientes, codigo);
+        double distancia = 0;
+        String enderecoArquivo;
+        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
+        listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
+        for(Voocliente vcli : listaVooClientes){
+            int codVoo = vcli.getCodVoo();
+            distancia += listaVoos.get(retornaIndiceVoos(codVoo, listaVoos)).getDistancia();
+        }
+        int categoria = cliente.getCategoria();
+        if(categoria == 0){
+            distancia = distancia*0.621;
+        }if(categoria == 1){
+            distancia = (distancia*0.621)*1.5;
+        }if(categoria == 2){
+            distancia = (distancia*0.621)*2;
+        }
+        System.out.println("A milhagem acumulada é de: " + Math.ceil(distancia) + "\n");
     }
 
-    public void saldoMilhasFamiliar(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
-        listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
-        listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
+    public void saldoMilhasFamiliar(ArrayList<Clientes> listaclientes, int codigo, ArrayList<Voos> listaVoos) {
+        double distancia = 0, distanciaC = 0;
+        Clientes cliente = new Clientes();
+        Clientes conjuge = new Clientes();
+        cliente = retornaCliente(listaclientes, codigo);
+        if(cliente.getCodConjuge()==-1){
+            saldoMilhasIndividual(listaclientes, codigo, listaVoos);
+        }else{
+            conjuge = retornaCliente(listaclientes, cliente.getCodConjuge());
+            String enderecoArquivo;
+            enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
+            listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
+            for(Voocliente vcli : listaVooClientes){
+                int codVoo = vcli.getCodVoo();
+                distancia += listaVoos.get(retornaIndiceVoos(codVoo, listaVoos)).getDistancia();
+                int categoria = cliente.getCategoria();
+                if(categoria == 0){
+                   distancia = distancia*0.621;
+                }if(categoria == 1){
+                    distancia = (distancia*0.621)*1.5;
+                }if(categoria == 2){
+                    distancia = (distancia*0.621)*2;
+                }
+            }
+                String enderecoArquivoC = "D:\\Facul\\ControleMilhagem\\" + conjuge.getNome()+conjuge.getCodCli()+".bin";
+                listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivoC);
+                for(Voocliente vCon : listaVooClientes){
+                    int codVooC = vCon.getCodVoo();
+                    distanciaC += listaVoos.get(retornaIndiceVoos(codVooC, listaVoos)).getDistancia();
+                    int categoriaC = conjuge.getCategoria();
+                    if(categoriaC == 0){
+                        distanciaC = distanciaC*0.621;
+                }if(categoriaC == 1){
+                    distanciaC = (distanciaC*0.621)*1.5;
+                }if(categoriaC == 2){
+                    distanciaC = (distanciaC*0.621)*2;
+                }
+            }
+                //System.out.println("Distancia Cliente -> " + Math.ceil(distancia));
+                //System.out.println("Distancia conjuge -> " + Math.ceil(distanciaC));
+                System.out.println("A soma da milhagem familiar é: " + Math.ceil(distancia+distanciaC));
+                System.out.println("");
+        }    
 
     }
 
