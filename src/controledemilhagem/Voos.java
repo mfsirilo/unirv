@@ -41,7 +41,7 @@ public class Voos implements Serializable{
         this.distancia = distancia;
         }
     
-    
+    public Voos(){}
     public Voos(int codigoVoo, String origem, String destino, float distancia){
         setCodigoVoo(codigoVoo);
         setOrigem(origem);

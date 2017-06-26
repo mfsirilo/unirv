@@ -61,7 +61,7 @@ public class Clientes implements Serializable{
     }
     
     //Construtor de clientes
-
+    public Clientes(){};
     public Clientes(int codCli, String nome, String sexo, String cpf, int categoria, int codConjuge) {
         this.codCli = codCli;
         this.nome = nome;

@@ -36,7 +36,7 @@ public class ControledeMilhagem implements Serializable {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        ArrayList<Voocliente> listaVooClientes = new ArrayList();
+        
         ArrayList<Voos> listaVoos = new ArrayList();
         ArrayList<Clientes> listaclientes = new ArrayList();
 
@@ -99,8 +99,6 @@ public class ControledeMilhagem implements Serializable {
 
                                 System.out.println("Cliente Cadastrado:");
                                 System.out.println("");
-
-                                //o metodo abaixo deverá imprimir o último cliente cadastrado.
                                 System.out.println("");
 
                                 System.out.println("Deseja cadastrar um conjuge? \ns - Para sim \nn - Para não");
@@ -144,11 +142,28 @@ public class ControledeMilhagem implements Serializable {
                                 break;
                             case 3:
                                 metodos.limparTela();
-                                metodos.cadastroVoocliente(listaclientes);
+                                leituramentoArquivo(listaclientes, Metodos.enderecoCli);
+                                metodos.imprimeCliente(listaclientes, 0);
+                                System.out.println("Informe o codigo do cliente: ");
+                                int codigo = scan.nextInt(); scan.nextLine();
+                                Clientes auxCli = new Clientes();
+                                auxCli = listaclientes.get(Metodos.retornaIndiceCliente(codigo, listaclientes));
+                                metodos.limparTela();
+                                leituramentoArquivo(listaVoos, Metodos.enderecoVoo);
+                                metodos.imprimeVoo(listaVoos);
+                                System.out.println("Informe o codigo do voo");
+                                codigo = scan.nextInt(); scan.nextLine();
+                                Voos auxVoo = new Voos();
+                                auxVoo = listaVoos.get(metodos.retornaIndiceVoos(codigo, listaVoos));
+                                System.out.println("Informe a data: ");
+                                int data = scan.nextInt(); scan.nextLine();
+                                System.out.println("Informe a hora: ");
+                                int hora = scan.nextInt(); scan.nextLine();
+                                metodos.cadastroVoocliente(auxCli, auxVoo, data, hora);
                                 break;
                             case 4:
                                 metodos.limparTela();
-                                metodos.excluirVoocliente(listaVooClientes);
+                                //metodos.excluirVoocliente(listaVooClientes);
                                 break;
                             case 5:
                                 metodos.limparTela();
@@ -217,17 +232,17 @@ public class ControledeMilhagem implements Serializable {
                         switch (opcao2) {
                             case 1:
                                 metodos.limparTela();
-                                metodos.historicoVooCliente(listaclientes, listaVooClientes, listaVoos);
+                                //metodos.historicoVooCliente(listaclientes, listaVooClientes, listaVoos);
                                 break;
 
                             case 2:
                                 metodos.limparTela();
-                                metodos.saldoMilhasIndividual(listaclientes, listaVooClientes, listaVoos);
+                               // metodos.saldoMilhasIndividual(listaclientes, listaVooClientes, listaVoos);
                                 break;
 
                             case 3:
                                 metodos.limparTela();
-                                metodos.saldoMilhasFamiliar(listaclientes, listaVooClientes, listaVoos);
+                               //1 metodos.saldoMilhasFamiliar(listaclientes, listaVooClientes, listaVoos);
                                 break;
                         }
                         metodos.menuRelatorio();

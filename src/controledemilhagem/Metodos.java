@@ -6,9 +6,10 @@ import java.util.*;
 public class Metodos implements Serializable {
 
     static String enderecoCli = "D:\\Facul\\ControleMilhagem\\Clientes.bin";
-    static String enderecoVocli = "D:\\Facul\\ControleMilhagem\\VooClientes.bin";
     static String enderecoVoo = "D:\\Facul\\ControleMilhagem\\Voo.bin";
-
+    
+    ArrayList<Voocliente> listaVooClientes = new ArrayList();
+    
     Scanner scan = new Scanner(System.in);
     int codC = 0, codCV = 0, codV = 0;
 
@@ -182,15 +183,24 @@ public class Metodos implements Serializable {
         listavoo.remove(retornaIndiceVoos(codigo, listavoo));
     }
 
-    public void cadastroVoocliente(ArrayList<Clientes> listaclientes) {
-        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+    public void cadastroVoocliente(Clientes cliente, Voos voo, int data, int hora) {
+        int codc, codv;
+        codc = cliente.getCodCli();
+        codv = voo.getCodigoVoo();
+       
+        Voocliente vooC = new Voocliente(codc, codv, data, hora);
+        //funfa
         String enderecoArquivo;
-        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + listaclientes.get(1).getNome()+listaclientes.get(1).getCodCli()+".bin";
-        System.out.println("Endereço teste -> " + enderecoArquivo);
+        enderecoArquivo = "D:\\Facul\\ControleMilhagem\\" + cliente.getNome()+cliente.getCodCli()+".bin";
+        listaVooClientes = ControledeMilhagem.leituramentoArquivo(listaVooClientes, enderecoArquivo);
+        listaVooClientes.add(vooC);
+        listaVooClientes = ControledeMilhagem.gravamentoArquivo(listaVooClientes, enderecoArquivo);
+
+        
     }
 
     public void excluirVoocliente(ArrayList<Voocliente> listavoocliente) {
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        
 
     }
 
@@ -216,21 +226,21 @@ public class Metodos implements Serializable {
 
     public void historicoVooCliente(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
         listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
 
     public void saldoMilhasIndividual(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
         listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
 
     public void saldoMilhasFamiliar(ArrayList<Clientes> listaclientes, ArrayList<Voocliente> listavoocliente, ArrayList<Voos> listavoos) {
         listaclientes = ControledeMilhagem.leituramentoArquivo(listaclientes, enderecoCli);
-        listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
+        //listavoocliente = ControledeMilhagem.leituramentoArquivo(listavoocliente, enderecoVocli);
         listavoos = ControledeMilhagem.leituramentoArquivo(listavoos, enderecoVoo);
 
     }
